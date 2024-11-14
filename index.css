@@ -70,6 +70,8 @@ main {
     margin: 3rem;
     position: relative;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .columns {
@@ -251,7 +253,7 @@ main {
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-name: main-border;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: linear;
     background-color: white;
     border-style: outset;
     height: 100%;
