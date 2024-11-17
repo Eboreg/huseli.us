@@ -46,7 +46,8 @@ window.addEventListener("load", function () {
         setDisplay(cookieConsent, "flex");
     }
     if (scrollContainer) {
-        scrollContainer.focus();
+        // @ts-expect-error apan ap
+        scrollContainer.focus({ focusVisible: false });
         scrollContent = scrollContainer.innerHTML;
         if (scrollContainer.scrollHeight <= scrollContainer.offsetHeight) {
             scrollContainer.innerHTML += scrollContent;

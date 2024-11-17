@@ -53,7 +53,8 @@ window.addEventListener("load", () => {
     }
 
     if (scrollContainer) {
-        scrollContainer.focus();
+        // @ts-expect-error apan ap
+        scrollContainer.focus({ focusVisible: false });
         scrollContent = scrollContainer.innerHTML;
 
         if (scrollContainer.scrollHeight <= scrollContainer.offsetHeight) {
