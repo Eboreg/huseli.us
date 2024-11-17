@@ -70,8 +70,21 @@ main {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: 3rem;
+    margin: 2rem;
     position: relative;
+}
+@media screen and (min-width: 768px) {
+    .main-content {
+        margin: 3rem;
+    }
+}
+
+#scroll-container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .columns {
@@ -79,8 +92,6 @@ main {
     display: flex;
     flex-grow: 1;
     flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: scroll;
     row-gap: 2rem;
 }
 
@@ -228,24 +239,31 @@ main {
     from {
         border-color: #00f;
         border-radius: 6rem 2rem 0 2rem;
-        border-width: 1px;
+        border-top-width: 1px;
+        border-bottom-width: 2rem;
     }
     25% {
         border-color: #0ff;
         border-radius: 2rem 6rem 2rem 0;
+        border-right-width: 1px;
+        border-left-width: 2rem;
     }
     50% {
         border-color: #f0f;
         border-radius: 0 2rem 6rem 2rem;
-        border-width: 2rem;
+        border-top-width: 2rem;
+        border-bottom-width: 1px;
     }
     75% {
         border-color: #ff0;
         border-radius: 2rem 0 2rem 6rem;
+        border-right-width: 2rem;
+        border-left-width: 1px;
     }
     to {
         border-color: #f00;
         border-radius: 6rem 2rem 0 2rem;
+        border-bottom-width: 2rem;
     }
 }
 .main-border {
@@ -255,7 +273,7 @@ main {
     animation-name: main-border;
     animation-timing-function: linear;
     background-color: white;
-    border-style: outset;
+    border-style: dotted;
     height: 100%;
     position: absolute;
     width: 100%;
