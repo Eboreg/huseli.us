@@ -1,3 +1,4 @@
+let cookieConsentContainer: HTMLElement | null;
 let scrollContainer: HTMLElement | null;
 let scrollContent: string;
 let isHandlingScroll = false;
@@ -30,30 +31,62 @@ function onScroll() {
     }
 }
 
+function getKeyframeRule(name: string, keyText: string): CSSKeyframeRule | undefined {
+    for (let idx = 0; idx < document.styleSheets.length; idx++) {
+        const sheet = document.styleSheets.item(idx);
+
+        if (sheet) {
+            for (let idx2 = 0; idx2 < sheet.cssRules.length; idx2++) {
+                const rule = sheet.cssRules.item(idx2);
+
+                if (rule instanceof CSSKeyframesRule && rule.name == name) {
+                    for (let idx3 = 0; idx3 < rule.cssRules.length; idx3++) {
+                        const frameRule = rule.cssRules.item(idx3);
+                        if (frameRule instanceof CSSKeyframeRule && frameRule.keyText == keyText) return frameRule;
+                    }
+                }
+            }
+        }
+    }
+    return;
+}
+
+function initCookieConsentAnimation() {
+    const cookieConsent = cookieConsentContainer?.querySelector(".cookie-consent");
+    const rule = getKeyframeRule("cookie-consent-container", "100%");
+
+    if (cookieConsent && rule) {
+        rule.style.paddingTop = `calc(100svh - ${cookieConsent.clientHeight}px)`;
+    }
+}
+
 window.addEventListener("load", () => {
-    const cookieConsent = document.getElementById("cookie-consent-container");
+    cookieConsentContainer = document.getElementById("cookie-consent-container");
     scrollContainer = document.getElementById("scroll-container");
 
     document.getElementById("cookie-consent-yes")?.addEventListener("click", () => {
         setCookieConsentCookie();
-        setDisplay(cookieConsent, "none");
+        setDisplay(cookieConsentContainer, "none");
     });
 
     document.getElementById("cookie-consent-maybe")?.addEventListener("click", () => {
         if (Math.random() >= 0.5) setCookieConsentCookie();
-        setDisplay(cookieConsent, "none");
+        setDisplay(cookieConsentContainer, "none");
     });
 
     document.getElementById("cookie-consent-no")?.addEventListener("click", () => {
-        setDisplay(cookieConsent, "none");
+        setDisplay(cookieConsentContainer, "none");
     });
 
     if (!cookieExists("cconsent")) {
-        setDisplay(cookieConsent, "flex");
+        setDisplay(cookieConsentContainer, "flex");
+        try {
+            initCookieConsentAnimation();
+        } catch (_: any) {}
     }
 
     if (scrollContainer) {
-        // @ts-expect-error apan ap
+        // @ts-expect-error Claims focusVisible does not exist
         scrollContainer.focus({ focusVisible: false });
         scrollContent = scrollContainer.innerHTML;
 

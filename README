@@ -1,0 +1,1 @@
+Build = `npx tsc`

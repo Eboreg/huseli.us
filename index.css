@@ -163,64 +163,6 @@ main {
             rgb(0 255 255 / 100%) 70px) top left no-repeat yellow;
 }
 
-#cookie-consent-container {
-    align-items: center;
-    background-color: #0005;
-    display: none;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.cookie-consent {
-    background-color: deeppink;
-    box-shadow: 0 10px 60px;
-    display: flex;
-    flex-direction: column;
-    font-size: large;
-    gap: 1rem;
-    justify-content: space-around;
-    padding: 4rem 2rem;
-    top: 30%;
-    width: 90%;
-}
-
-@media screen and (min-width: 1400px) {
-    .cookie-consent {
-        align-items: center;
-        flex-direction: row;
-    }
-}
-
-.cookie-consent-buttons {
-    display: flex;
-    gap: .5rem;
-}
-
-.cookie-consent-buttons button {
-    font-size: large;
-    padding: .5rem 1rem;
-}
-
-#cookie-consent-yes {
-    background-color: red;
-    border-color: red;
-}
-
-#cookie-consent-no {
-    background-color: green;
-    border-color: green;
-}
-
-#cookie-consent-maybe {
-    background-color: yellow;
-    border-color: yellow;
-}
-
 #title {
     display: inline-block;
 }
@@ -339,4 +281,90 @@ main {
 
 img.email {
     height: 1rem;
+}
+
+@keyframes cookie-consent-container {
+    0% {
+        padding-top: 0;
+    }
+    100% {
+        padding-top: 0;
+    }
+}
+#cookie-consent-container {
+    align-items: center;
+    animation-direction: alternate;
+    animation-duration: 19s;
+    animation-iteration-count: infinite;
+    animation-name: cookie-consent-container;
+    animation-timing-function: linear;
+    background-color: #0005;
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+@keyframes cookie-consent {
+    from {
+        left: -5%;
+    }
+    to {
+        left: 5%;
+    }
+}
+.cookie-consent {
+    animation-direction: alternate;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: cookie-consent;
+    animation-timing-function: linear;
+    background-color: deeppink;
+    box-shadow: 0 10px 60px;
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    gap: 1rem;
+    justify-content: space-around;
+    padding: 4rem 2rem;
+    position: relative;
+    width: 90%;
+}
+
+@media screen and (min-width: 1400px) {
+    .cookie-consent {
+        align-items: center;
+        flex-direction: row;
+    }
+}
+
+.cookie-consent-buttons {
+    display: flex;
+    gap: .5rem;
+}
+
+.cookie-consent-buttons button {
+    font-size: large;
+    padding: 1rem;
+}
+
+#cookie-consent-yes {
+    background-color: red;
+    border-color: red;
+    border-radius: 0 100% 50% 100%;
+}
+
+#cookie-consent-no {
+    background-color: green;
+    border-color: green;
+    border-radius: 100%;
+}
+
+#cookie-consent-maybe {
+    background-color: yellow;
+    border-color: yellow;
+    border-radius: 50% 100% 0 100%;
 }
