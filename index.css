@@ -29,6 +29,25 @@ a {
     text-decoration: none;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+header h1 {
+    margin-bottom: 0;
+}
+
+.subheader {
+    font-style: italic;
+    font-family: cursive;
+    font-size: 18px;
+    color: deeppink;
+}
+
 code {
     font-size: 1.2em;
 }
