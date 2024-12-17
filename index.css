@@ -327,6 +327,27 @@ img.email {
     width: 100%;
 }
 
+@keyframes cookie-consent-container-hide {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+#cookie-consent-container.hide {
+    animation-direction: normal, alternate;
+    animation-duration: 2s, 19s;
+    animation-iteration-count: 1, infinite;
+    animation-name: cookie-consent-container-hide, cookie-consent-container;
+    animation-timing-function: ease-in, linear;
+}
+
+#cookie-consent-container.hide,
+#cookie-consent-container.shown {
+    display: flex;
+}
+
 @keyframes cookie-consent {
     from {
         left: -5%;
@@ -351,6 +372,22 @@ img.email {
     padding: 4rem 2rem;
     position: relative;
     width: 90%;
+}
+
+@keyframes cookie-consent-hide {
+    from {
+        scale: 1;
+    }
+    to {
+        scale: 400;
+    }
+}
+#cookie-consent-container.hide .cookie-consent {
+    animation-direction: normal, alternate;
+    animation-duration: 4s, 10s;
+    animation-iteration-count: 1, infinite;
+    animation-name: cookie-consent-hide, cookie-consent;
+    animation-timing-function: ease-in, linear;
 }
 
 @media screen and (min-width: 1400px) {

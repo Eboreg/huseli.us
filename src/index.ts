@@ -3,10 +3,6 @@ let scrollContainer: HTMLElement | null;
 let scrollContent: string;
 let isHandlingScroll = false;
 
-function setDisplay(elem: HTMLElement | null, display: string) {
-    if (elem) elem.style.display = display;
-}
-
 function cookieExists(name: string) {
     return document.cookie.split(";").some((item) => item.trim().startsWith(`${name}=`));
 }
@@ -60,29 +56,43 @@ function initCookieConsentAnimation() {
     }
 }
 
+function hideCookieConsentContainer() {
+    cookieConsentContainer?.classList.remove("shown");
+    cookieConsentContainer?.classList.add("hide");
+}
+
 window.addEventListener("load", () => {
     cookieConsentContainer = document.getElementById("cookie-consent-container");
     scrollContainer = document.getElementById("scroll-container");
 
+    cookieConsentContainer?.addEventListener("animationend", (event) => {
+        if (cookieConsentContainer?.classList.contains("hide")) {
+            cookieConsentContainer?.classList.remove("hide");
+            cookieConsentContainer?.classList.add("hidden");
+        }
+    });
+
     document.getElementById("cookie-consent-yes")?.addEventListener("click", () => {
         setCookieConsentCookie();
-        setDisplay(cookieConsentContainer, "none");
+        hideCookieConsentContainer();
     });
 
     document.getElementById("cookie-consent-maybe")?.addEventListener("click", () => {
         if (Math.random() >= 0.5) setCookieConsentCookie();
-        setDisplay(cookieConsentContainer, "none");
+        hideCookieConsentContainer();
     });
 
     document.getElementById("cookie-consent-no")?.addEventListener("click", () => {
-        setDisplay(cookieConsentContainer, "none");
+        hideCookieConsentContainer();
     });
 
     if (!cookieExists("cconsent")) {
-        setDisplay(cookieConsentContainer, "flex");
+        cookieConsentContainer?.classList.add("shown");
         try {
             initCookieConsentAnimation();
-        } catch (_: any) {}
+        } catch (error: any) {
+            console.error(error);
+        }
     }
 
     if (scrollContainer) {
