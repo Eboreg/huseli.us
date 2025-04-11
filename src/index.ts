@@ -65,26 +65,26 @@ window.addEventListener("load", () => {
     cookieConsentContainer = document.getElementById("cookie-consent-container");
     scrollContainer = document.getElementById("scroll-container");
 
-    cookieConsentContainer?.addEventListener("animationend", (event) => {
+    cookieConsentContainer?.addEventListener("animationend", () => {
         if (cookieConsentContainer?.classList.contains("hide")) {
             cookieConsentContainer?.classList.remove("hide");
             cookieConsentContainer?.classList.add("hidden");
         }
-    });
+    }, { passive: true });
 
     document.getElementById("cookie-consent-yes")?.addEventListener("click", () => {
         setCookieConsentCookie();
         hideCookieConsentContainer();
-    });
+    }, { passive: true });
 
     document.getElementById("cookie-consent-maybe")?.addEventListener("click", () => {
         if (Math.random() >= 0.5) setCookieConsentCookie();
         hideCookieConsentContainer();
-    });
+    }, { passive: true });
 
     document.getElementById("cookie-consent-no")?.addEventListener("click", () => {
         hideCookieConsentContainer();
-    });
+    }, { passive: true });
 
     if (!cookieExists("cconsent")) {
         cookieConsentContainer?.classList.add("shown");
@@ -104,7 +104,7 @@ window.addEventListener("load", () => {
             scrollContainer.innerHTML += scrollContent;
         }
 
-        scrollContainer.addEventListener("scroll", onScroll);
-        scrollContainer.addEventListener("wheel", onScroll);
+        scrollContainer.addEventListener("scroll", onScroll, { passive: true });
+        scrollContainer.addEventListener("wheel", onScroll, { passive: true });
     }
 });
