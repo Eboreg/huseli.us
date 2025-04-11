@@ -56,24 +56,24 @@ window.addEventListener("load", () => {
     var _a, _b, _c;
     cookieConsentContainer = document.getElementById("cookie-consent-container");
     scrollContainer = document.getElementById("scroll-container");
-    cookieConsentContainer === null || cookieConsentContainer === void 0 ? void 0 : cookieConsentContainer.addEventListener("animationend", (event) => {
+    cookieConsentContainer === null || cookieConsentContainer === void 0 ? void 0 : cookieConsentContainer.addEventListener("animationend", () => {
         if (cookieConsentContainer === null || cookieConsentContainer === void 0 ? void 0 : cookieConsentContainer.classList.contains("hide")) {
             cookieConsentContainer === null || cookieConsentContainer === void 0 ? void 0 : cookieConsentContainer.classList.remove("hide");
             cookieConsentContainer === null || cookieConsentContainer === void 0 ? void 0 : cookieConsentContainer.classList.add("hidden");
         }
-    });
+    }, { passive: true });
     (_a = document.getElementById("cookie-consent-yes")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
         setCookieConsentCookie();
         hideCookieConsentContainer();
-    });
+    }, { passive: true });
     (_b = document.getElementById("cookie-consent-maybe")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
         if (Math.random() >= 0.5)
             setCookieConsentCookie();
         hideCookieConsentContainer();
-    });
+    }, { passive: true });
     (_c = document.getElementById("cookie-consent-no")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
         hideCookieConsentContainer();
-    });
+    }, { passive: true });
     if (!cookieExists("cconsent")) {
         cookieConsentContainer === null || cookieConsentContainer === void 0 ? void 0 : cookieConsentContainer.classList.add("shown");
         try {
@@ -90,8 +90,8 @@ window.addEventListener("load", () => {
         if (scrollContainer.scrollHeight <= scrollContainer.offsetHeight) {
             scrollContainer.innerHTML += scrollContent;
         }
-        scrollContainer.addEventListener("scroll", onScroll);
-        scrollContainer.addEventListener("wheel", onScroll);
+        scrollContainer.addEventListener("scroll", onScroll, { passive: true });
+        scrollContainer.addEventListener("wheel", onScroll, { passive: true });
     }
 });
 //# sourceMappingURL=index.js.map
