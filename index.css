@@ -6,8 +6,8 @@
 body {
     background-color: aquamarine;
     display: flex;
-    height: 100svh;
     font-family: "Roboto",sans-serif;
+    height: 100svh;
     justify-content: center;
     margin: 0;
 }
@@ -30,10 +30,10 @@ a {
 }
 
 header {
+    align-items: start;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: start;
     margin-bottom: 1rem;
 }
 
@@ -42,10 +42,10 @@ header h1 {
 }
 
 .subheader {
-    font-style: italic;
+    color: deeppink;
     font-family: cursive;
     font-size: 18px;
-    color: deeppink;
+    font-style: italic;
 }
 
 code {
@@ -99,11 +99,11 @@ main {
 }
 
 #scroll-container {
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
     row-gap: 2rem;
-    display: flex;
-    flex-direction: column;
 }
 
 .columns {
@@ -198,33 +198,33 @@ main {
 
 @keyframes main-border {
     from {
+        border-bottom-width: 2rem;
         border-color: #00f;
         border-radius: 6rem 2rem 0 2rem;
         border-top-width: 1px;
-        border-bottom-width: 2rem;
     }
     25% {
         border-color: #0ff;
+        border-left-width: 2rem;
         border-radius: 2rem 6rem 2rem 0;
         border-right-width: 1px;
-        border-left-width: 2rem;
     }
     50% {
+        border-bottom-width: 1px;
         border-color: #f0f;
         border-radius: 0 2rem 6rem 2rem;
         border-top-width: 2rem;
-        border-bottom-width: 1px;
     }
     75% {
         border-color: #ff0;
+        border-left-width: 1px;
         border-radius: 2rem 0 2rem 6rem;
         border-right-width: 2rem;
-        border-left-width: 1px;
     }
     to {
+        border-bottom-width: 2rem;
         border-color: #f00;
         border-radius: 6rem 2rem 0 2rem;
-        border-bottom-width: 2rem;
     }
 }
 .main-border {
@@ -302,21 +302,8 @@ img.email {
     height: 1rem;
 }
 
-@keyframes cookie-consent-container {
-    0% {
-        padding-top: 0;
-    }
-    100% {
-        padding-top: 0;
-    }
-}
 #cookie-consent-container {
     align-items: center;
-    animation-direction: alternate;
-    animation-duration: 19s;
-    animation-iteration-count: infinite;
-    animation-name: cookie-consent-container;
-    animation-timing-function: linear;
     background-color: #0005;
     display: none;
     flex-direction: column;
@@ -348,7 +335,7 @@ img.email {
     display: flex;
 }
 
-@keyframes cookie-consent {
+@keyframes cookie-consent-horizontal {
     from {
         left: -5%;
     }
@@ -356,11 +343,19 @@ img.email {
         left: 5%;
     }
 }
-.cookie-consent {
+@keyframes cookie-consent-vertical {
+    from {
+        top: 0;
+    }
+    to {
+        top: calc(100vh - 190px);
+    }
+}
+#cookie-consent {
     animation-direction: alternate;
-    animation-duration: 10s;
+    animation-duration: 10s, 19s;
     animation-iteration-count: infinite;
-    animation-name: cookie-consent;
+    animation-name: cookie-consent-horizontal, cookie-consent-vertical;
     animation-timing-function: linear;
     background-color: deeppink;
     box-shadow: 0 10px 60px;
@@ -368,8 +363,9 @@ img.email {
     flex-direction: column;
     font-size: large;
     gap: 1rem;
+    height: 190px;
     justify-content: space-around;
-    padding: 4rem 2rem;
+    padding: 2rem;
     position: relative;
     width: 90%;
 }
@@ -382,7 +378,7 @@ img.email {
         scale: 400;
     }
 }
-#cookie-consent-container.hide .cookie-consent {
+#cookie-consent-container.hide #cookie-consent {
     animation-direction: normal, alternate;
     animation-duration: 4s, 10s;
     animation-iteration-count: 1, infinite;
@@ -391,18 +387,18 @@ img.email {
 }
 
 @media screen and (min-width: 1400px) {
-    .cookie-consent {
+    #cookie-consent {
         align-items: center;
         flex-direction: row;
     }
 }
 
-.cookie-consent-buttons {
+#cookie-consent-buttons {
     display: flex;
     gap: .5rem;
 }
 
-.cookie-consent-buttons button {
+#cookie-consent-buttons button {
     font-size: large;
     padding: 1rem;
 }
