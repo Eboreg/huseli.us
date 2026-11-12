@@ -10,6 +10,7 @@ body {
     height: 100svh;
     justify-content: center;
     margin: 0;
+    overflow: hidden;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -334,15 +335,6 @@ img.email {
     animation-name: cookie-consent-container-hide;
     animation-timing-function: ease-in;
 }
-/*
-#cookie-consent-container.hide {
-    animation-direction: normal, alternate;
-    animation-duration: 2s, 19s;
-    animation-iteration-count: 1, infinite;
-    animation-name: cookie-consent-container-hide, cookie-consent-container;
-    animation-timing-function: ease-in, linear;
-}
-*/
 
 #cookie-consent-container.hide,
 #cookie-consent-container.shown {
